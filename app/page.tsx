@@ -1,6 +1,8 @@
 "use client"
 import { useState } from 'react';
+// import { useNavigate } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
+import CountryModal from '@/components/CountryModal';
 import { useTrip } from '@/context/TripContext';
 import { Country } from '@/data/mockData';
 import { ArrowRight } from 'lucide-react';
@@ -45,6 +47,12 @@ const Page = () => {
           </p>
         </div>
       </div>
+
+      <CountryModal
+        isOpen={isModalOpen}
+        onClose={() => setIsModalOpen(false)}
+        onSelect={handleCountrySelect}
+      />
       
       <footer className="py-6 text-center text-sm text-gray-500">
         &copy; {new Date().getFullYear()} Packwise. All rights reserved.

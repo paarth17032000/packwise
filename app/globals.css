@@ -77,3 +77,26 @@
   --sidebar-ring: 217.2 91.2% 59.8%;
 }
 
+/*
+body {
+  @apply bg-background text-foreground; 
+  font-feature-settings: "ss01", "ss02", "cv01", "cv02", "cv03";
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+.card-hover {
+  @apply transition-all duration-200 hover:shadow-md hover:translate-y-[-2px];
+}
+
+.button-hover {
+  @apply transition-transform duration-200 hover:scale-105 active:scale-95;
+}
+
+.checkbox-custom {
+  @apply h-5 w-5 rounded-md border-2 border-gray-300 bg-white transition-colors
+  focus:outline-none focus:ring-2 focus:ring-brand focus:ring-offset-2
+  checked:bg-brand checked:text-white;
+} */
