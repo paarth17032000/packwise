@@ -4,7 +4,6 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/u
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { countries, Country } from '@/data/mockData';
-import { useTrip } from '@/context/TripContext';
 import { useToast } from '@/hooks/use-toast';
 
 interface CountryModalProps {
@@ -56,7 +55,7 @@ const CountryModal = ({ isOpen, onClose, onSelect }: CountryModalProps) => {
               <Button
                 key={country.id}
                 variant="outline"
-                className="flex items-center justify-start gap-2 p-3 h-auto card-hover transition-all duration-200 hover:shadow-md hover:translate-y-[-2px]"
+                className="flex items-center justify-start gap-2 p-3 h-auto cursor-pointer card-hover transition-all duration-200 hover:shadow-md hover:translate-y-[-2px]"
                 onClick={() => handleSelect(country)}
               >
                 <span className="text-2xl">{country.flag}</span>
