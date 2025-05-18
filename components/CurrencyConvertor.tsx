@@ -65,7 +65,7 @@ const CurrencyConverter = ({ isOpen, onClose }: CurrencyConverterProps) => {
           </DialogTitle>
         </DialogHeader>
         
-        <div className="p-4 space-y-10">
+        <div className="p-0 sm:p-4 space-y-10">
           <div className="space-y-4">
             <div className="space-y-2">
               <label className="text-sm font-medium">Amount</label>

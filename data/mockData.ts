@@ -45,7 +45,7 @@ export interface Country {
     },
     {
       id: 'uk',
-      name: 'United Kingdom',
+      name: 'UK',
       flag: '🇬🇧',
       currency: {
         code: 'GBP',

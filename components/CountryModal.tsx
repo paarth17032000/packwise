@@ -43,7 +43,7 @@ const CountryModal = ({ isOpen, onClose, onSelect }: CountryModalProps) => {
         <DialogHeader>
           <DialogTitle className="text-center text-2xl font-semibold text-gray-800">Select your destination</DialogTitle>
         </DialogHeader>
-        <div className="p-4 space-y-6">
+        <div className="p-0 sm:p-4 space-y-6">
           <Input
             placeholder="Search countries..."
             value={search}
@@ -62,6 +62,7 @@ const CountryModal = ({ isOpen, onClose, onSelect }: CountryModalProps) => {
                 <span className="text-sm font-medium">{country.name}</span>
               </Button>
             ))}
+            <div className='col-span-2 text-sm italic text-(--muted-foreground)'>*Currently we are serving only these countries!</div>
           </div>
         </div>
       </DialogContent>
