@@ -1,10 +1,10 @@
 import { useState, useEffect } from 'react';
-import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/ui/dailog';
+import { useTrip } from '@/context/TripContext';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
+import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/ui/dailog';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { countries } from '@/data/mockData';
-import { useTrip } from '@/context/TripContext';
 import { ArrowRight, Currency } from 'lucide-react';
 
 interface CurrencyConverterProps {

@@ -1,15 +1,11 @@
 'use client'
-import React, { useState } from 'react'
-import { useEffect } from 'react';
-
-import { Button } from '@/components/ui/button';
+import { useRouter } from 'next/navigation';
+import React, { useState, useEffect } from 'react'
 import { useTrip } from '@/context/TripContext';
 import CountryInfo from '@/components/CountryInfo';
 import ChecklistSection from '@/components/ChecklistSection';
-import FloatingActionButton from '@/components/FloatingActionButton';
-import { ArrowRight } from 'lucide-react';
-import { useRouter } from 'next/navigation';
 import TripPageSkeleton from '@/components/TripPageSkeleton';
+import FloatingActionButton from '@/components/FloatingActionButton';
 
 export default function Trip() {
   const [loading, setLoading] = useState<boolean>(true)

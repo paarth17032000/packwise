@@ -4,7 +4,6 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/u
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { countries, Country } from '@/data/mockData';
-import { useToast } from '@/hooks/use-toast';
 
 interface CountryModalProps {
   isOpen: boolean;
@@ -15,7 +14,6 @@ interface CountryModalProps {
 const CountryModal = ({ isOpen, onClose, onSelect }: CountryModalProps) => {
   const [search, setSearch] = useState('');
   const [filteredCountries, setFilteredCountries] = useState(countries);
-  const { toast } = useToast();
   
   useEffect(() => {
     if (search) {
@@ -30,10 +28,6 @@ const CountryModal = ({ isOpen, onClose, onSelect }: CountryModalProps) => {
 
   const handleSelect = (country: Country) => {
     onSelect(country);
-    toast({
-      title: "Country Selected",
-      description: `You've selected ${country.name} for your trip.`,
-    });
     onClose();
   };
 

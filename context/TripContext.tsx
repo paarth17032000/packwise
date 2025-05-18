@@ -11,34 +11,83 @@ interface TripContextType {
   deleteChecklistItem: (id: string) => void;
 }
 
+// Interface to store checklists by country ID
+interface CountryChecklists {
+  [countryId: string]: ChecklistItem[];
+}
+
 const TripContext = createContext<TripContextType | undefined>(undefined);
 
 export function TripProvider({ children }: { children: React.ReactNode }) {
   const [selectedCountry, setSelectedCountry] = useState<Country | null>(null);
   const [checklist, setChecklist] = useState<ChecklistItem[]>(defaultChecklist);
+  const [countryChecklists, setCountryChecklists] = useState<CountryChecklists>({});
 
   // Load data from localStorage on component mount
   useEffect(() => {
     const savedCountryId = localStorage.getItem('selectedCountryId');
-    const savedChecklist = localStorage.getItem('checklist');
+    const savedCountryChecklists = localStorage.getItem('countryChecklists');
 
     if (savedCountryId) {
       const country = getCountryById(savedCountryId);
-      if (country) setSelectedCountry(country);
-    }
-
-    if (savedChecklist) {
-      setChecklist(JSON.parse(savedChecklist));
+      if (country) {
+        setSelectedCountry(country);
+        
+        // Load country-specific checklist if it exists
+        if (savedCountryChecklists) {
+          const parsedChecklists = JSON.parse(savedCountryChecklists);
+          setCountryChecklists(parsedChecklists);
+          
+          // Set the current checklist to the one for this country, or use default
+          setChecklist(parsedChecklists[savedCountryId] || defaultChecklist);
+        }
+      }
     }
   }, []);
+
+  // Update checklist whenever country changes
+  useEffect(() => {
+    if (selectedCountry) {
+      // If we have a checklist for this country, use it; otherwise use default
+      if (countryChecklists[selectedCountry.id]) {
+        setChecklist(countryChecklists[selectedCountry.id]);
+      } else {
+        setChecklist(defaultChecklist);
+      }
+    }
+  }, [selectedCountry, countryChecklists]);
 
   // Save data to localStorage when it changes
   useEffect(() => {
     if (selectedCountry) {
       localStorage.setItem('selectedCountryId', selectedCountry.id);
+      
+      // Update the checklist for the current country
+      const updatedChecklists = {
+        ...countryChecklists,
+        [selectedCountry.id]: checklist
+      };
+      
+      setCountryChecklists(updatedChecklists);
+      localStorage.setItem('countryChecklists', JSON.stringify(updatedChecklists));
     }
-    localStorage.setItem('checklist', JSON.stringify(checklist));
   }, [selectedCountry, checklist]);
+
+  // Function to handle country selection and its checklist
+  const handleSelectCountry = (country: Country | null) => {
+    if (country) {
+      setSelectedCountry(country);
+      
+      // If we already have a checklist for this country, use it; otherwise use default
+      if (countryChecklists[country.id]) {
+        setChecklist(countryChecklists[country.id]);
+      } else {
+        setChecklist(defaultChecklist);
+      }
+    } else {
+      setSelectedCountry(null);
+    }
+  };
 
   const toggleChecklistItem = (id: string) => {
     setChecklist(prev => 
@@ -66,7 +115,7 @@ export function TripProvider({ children }: { children: React.ReactNode }) {
     <TripContext.Provider value={{ 
       selectedCountry, 
       checklist, 
-      setSelectedCountry,
+      setSelectedCountry: handleSelectCountry,
       toggleChecklistItem,
       addChecklistItem,
       deleteChecklistItem
