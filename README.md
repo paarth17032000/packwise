@@ -1,36 +1,78 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Packwise - Travel Checklist App
 
-## Getting Started
+Packwise is a responsive web application that helps travelers manage country-specific packing checklists and see currency conversions.
 
-First, run the development server:
+## Ideas used from codecircuit idealist
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+  - Packing checklist with item categories
+  - Currency converter with fake values
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## How to Run the Project
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+1. Clone the repository
+   ```bash
+   git clone https://github.com/paarth17032000/packwise
+   cd packwise
+   ```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+2. Install dependencies
+   ```bash
+   npm install
+   ```
 
-## Learn More
+3. Start the development server
+   ```bash
+   npm run dev
+   ```
 
-To learn more about Next.js, take a look at the following resources:
+4. Open your browser and navigate to `http://localhost:3000`
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Application Flow
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+1. **Homepage**: Users select a destination country from the available options
+2. **Trip Page**: Users can:
+   - View country information (flag, currency, timezone)
+   - Use the currency converter to plan expenses
+   - Manage their packing checklist with categorized items
+   - Add, check off, or delete items from their checklist
 
-## Deploy on Vercel
+## Key Features
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+- **Country-Specific Checklists**: Each country maintains its own unique checklist, allowing users to have different packing lists for different destinations
+- **Categorized Items**: Checklist items are organized into four categories:
+  - Shopping
+  - Utilities
+  - Cold Weather
+  - Essentials
+- **Persistent Storage**: All user data is saved in localStorage for a seamless experience between sessions
+- **Currency Converter**: Built-in tool to convert between USD and local currency
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Technical Implementation
+
+- **Mock Data**: The application uses mock data for countries and default checklist items
+- **Local Storage**: User selections and checklists are saved to browser localStorage
+- **Country-Specific Storage**: Implemented a system where each country ID maps to its own unique checklist
+
+## Tech Stack
+
+- **React**: UI library for building the component-based interface
+- **TypeScript**: For type-safe code
+- **Tailwind CSS**: For responsive styling
+- **Radix UI**: Component library for consistent design
+- **Lucide React**: For icons
+
+## Project Structure
+
+- `/components/`: UI components
+- `/app/`: Page components (Index, TripPage)
+- `/contexts/`: React contexts for state management
+- `/data/`: Mock data for countries and default checklists
+
+## Future Enhancements
+
+- Fetching all dynamic country details and currency conversions using API
+- Backend integration for user accounts and handling checklist
+- Public/private checklist sharing
+- Weather integration for destination cities
+- Budget Tracker
+- Travel gallery / moodboard
